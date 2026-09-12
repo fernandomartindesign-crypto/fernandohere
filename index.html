@@ -18,8 +18,8 @@
     }
 
     body {
-      background-color: #fafafa;
-      color: #1a1a1a;
+      background-color: #000000;
+      color: #ffffff; /* White text required for 'difference' blend mode */
       font-family: 'Nunito', sans-serif;
       min-height: 100vh;
       display: flex;
@@ -27,27 +27,43 @@
       align-items: center;
       text-align: center;
       padding: 24px 16px;
+      overflow: hidden;
     }
 
+    /* Fullscreen background video */
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover; /* Stretches and crops video to fill full screen without stretching ratio */
+      z-index: -1;
+    }
+
+    /* Main Content Container */
     .container {
       max-width: 440px;
       width: 100%;
+      position: relative;
+      z-index: 1;
+      
+      /* Dynamic contrast blending mode */
+      mix-blend-mode: difference;
     }
 
     h1 {
       font-family: 'Playfair Display', Georgia, serif;
       font-size: 1.5rem;
-      font-weight: 400;
+      font-weight: 500;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       margin-bottom: 4px;
-      color: #111111;
     }
 
     .tagline {
       font-size: 0.85rem;
       font-weight: 400;
-      color: #555555;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       margin-bottom: 14px;
@@ -57,7 +73,6 @@
       font-size: 0.8rem;
       font-weight: 300;
       font-style: italic;
-      color: #888888;
       margin-bottom: 20px;
     }
 
@@ -70,7 +85,6 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: #888888;
       margin-bottom: 6px;
     }
 
@@ -83,18 +97,25 @@
     }
 
     .links a {
-      color: #1a1a1a;
+      color: #ffffff;
       font-weight: 400;
       text-decoration: none;
-      transition: color 0.2s ease;
+      transition: opacity 0.2s ease;
     }
 
     .links a:hover {
-      color: #666666;
+      opacity: 0.7;
     }
   </style>
 </head>
 <body>
+
+  <!-- Background Video Element -->
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="BG.mp4" type="video/mp4">
+  </video>
+
+  <!-- Text Layer -->
   <div class="container">
     <h1>FERNANDO&nbsp;&nbsp;&nbsp;MARTIN</h1>
     <p class="tagline">Artist / Director / Mercenary</p>
@@ -108,5 +129,6 @@
       </div>
     </div>
   </div>
+
 </body>
 </html>
